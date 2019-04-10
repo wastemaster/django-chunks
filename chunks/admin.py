@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.db.models.fields.files import ImageField
 
 from . import models
-from . import widgets
+#from . import widgets
 
 
 class ChunkAdmin(admin.ModelAdmin):
@@ -26,10 +26,10 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ('key', )
     search_fields = ('key', )
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if isinstance(db_field, ImageField):
-            kwargs['widget'] = widgets.CustomizedImageWidget
-        return super(ImageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+#    def formfield_for_dbfield(self, db_field, **kwargs):
+#        if isinstance(db_field, ImageField):
+#            kwargs['widget'] = widgets.CustomizedImageWidget
+#        return super(ImageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 admin.site.register(models.Image, ImageAdmin)
 
