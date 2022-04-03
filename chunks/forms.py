@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 from django import forms
-from . models import Chunk
+
+from .models import Chunk
 
 
 class EditForm(forms.ModelForm):

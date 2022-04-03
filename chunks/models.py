@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-
-from django.db import models
 from django.core.cache import cache
+from django.db import models
 from django.utils.translation import get_language
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+
 from . import managers
 
 CACHE_PREFIX = 'chunks_'
@@ -11,8 +10,8 @@ CACHE_PREFIX = 'chunks_'
 
 class BaseChunk(models.Model):
 
-    key = models.CharField(_(u'key'), max_length=255, unique=True,
-                           help_text=_(u'A unique name for this chunk of content'))
+    key = models.CharField(_('key'), max_length=255, unique=True,
+                           help_text=_('A unique name for this chunk of content'))
 
     content_type = 'unknown'
 
@@ -30,19 +29,19 @@ class BaseChunk(models.Model):
 
 
 class Chunk(BaseChunk):
-    u"""
+    """
     A Chunk is a piece of content associated
     with a unique key that can be inserted into
     any template with the use of a special template
     tag
     """
-    content = models.TextField(_(u'content'), blank=True)
+    content = models.TextField(_('content'), blank=True)
 
     content_type = 'text'
 
     class Meta(BaseChunk.Meta):
-        verbose_name = _(u'Text Chunk')
-        verbose_name_plural = _(u'Text Chunks')
+        verbose_name = _('Text Chunk')
+        verbose_name_plural = _('Text Chunks')
 
 
 class Group(models.Model):
@@ -52,15 +51,15 @@ class Group(models.Model):
     any template with the use of a special template
     tag
     """
-    key = models.CharField(_(u'key'), max_length=255, unique=False,
-                           help_text=_(u'A name for chunks group'))
-    content = models.TextField(_(u'content'), blank=True)
+    key = models.CharField(_('key'), max_length=255, unique=False,
+                           help_text=_('A name for chunks group'))
+    content = models.TextField(_('content'), blank=True)
 
     content_type = 'group'
 
     class Meta:
-        verbose_name = _(u'Group Chunk')
-        verbose_name_plural = _(u'Group Chunks')
+        verbose_name = _('Group Chunk')
+        verbose_name_plural = _('Group Chunks')
         ordering = ('key', )
 
     def __unicode__(self):
@@ -73,33 +72,33 @@ class Group(models.Model):
 
 
 class Image(BaseChunk):
-    u"""
+    """
     The same thing like Chunk but for images.
     """
-    image = models.ImageField(_(u'image'), upload_to=u'chunks/images', max_length=255)
+    image = models.ImageField(_('image'), upload_to='chunks/images', max_length=255)
 
     content_type = 'text'
 
     objects = managers.ImageManager()
 
     class Meta(BaseChunk.Meta):
-        verbose_name = _(u'Image Chunk')
-        verbose_name_plural = _(u'Image Chunks')
+        verbose_name = _('Image Chunk')
+        verbose_name_plural = _('Image Chunks')
 
 
 class Media(BaseChunk):
-    u"""
+    """
     The same thing like Chunk but for files.
     """
-    title = models.CharField(max_length=64, verbose_name=_(u'Title'))
-    desc = models.CharField(max_length=256, blank=True, null=True, verbose_name=_(u'Description'))
-    media = models.FileField(upload_to='chunks/media', max_length=256, blank=True, null=True, verbose_name=_(u'Media'))
+    title = models.CharField(max_length=64, verbose_name=_('Title'))
+    desc = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Description'))
+    media = models.FileField(upload_to='chunks/media', max_length=256, blank=True, null=True, verbose_name=_('Media'))
 
     content_type = 'text'
 
     class Meta(BaseChunk.Meta):
-        verbose_name = _(u'Media Chunk')
-        verbose_name_plural = _(u'Media Chunks')
+        verbose_name = _('Media Chunk')
+        verbose_name_plural = _('Media Chunks')
 
     @staticmethod
     def get(key):
