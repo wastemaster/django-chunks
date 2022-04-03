@@ -3,8 +3,8 @@ import setuplib
 
 packages, package_data = setuplib.find_packages(['chunks', 'chunks.templatetags', 'migrations'])
 
-setup(name='chunks',
-      version='2.9',
+setup(name='django-chunks',
+      version='2.10',
       description='Keyed blocks of content for use in your Django templates',
       author='Ruslan Popov',
       author_email='ruslan.popov@gmail.com',
