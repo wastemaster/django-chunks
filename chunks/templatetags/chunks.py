@@ -6,17 +6,17 @@ from os.path import dirname, basename, join
 from django import template
 from django.core.cache import cache
 from django.core.files.base import File
-from django.db import models
+from django.apps import apps
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.utils.translation import get_language
 
 CACHE_PREFIX = 'chunks_'
 
-Chunk = models.get_model('chunks', 'chunk')
-Image = models.get_model('chunks', 'image')
-Media = models.get_model('chunks', 'media')
-Group = models.get_model('chunks', 'group')
+Chunk = apps.get_model('chunks', 'chunk')
+Image = apps.get_model('chunks', 'image')
+Media = apps.get_model('chunks', 'media')
+Group = apps.get_model('chunks', 'group')
 
 register = template.Library()
 logger = logging.getLogger(__name__)
