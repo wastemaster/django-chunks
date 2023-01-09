@@ -22,7 +22,7 @@ class ImageAdmin(admin.ModelAdmin):
     search_fields = ('key', )
 
 
-@admin.register(models.Media, MediaAdmin)
+@admin.register(models.Media)
 class MediaAdmin(admin.ModelAdmin):
     list_display = ('key', 'title')
     search_fields = ('key', 'title', 'desc')
