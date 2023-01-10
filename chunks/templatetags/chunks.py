@@ -118,7 +118,7 @@ class ChunkNode(template.Node):
                 obj.content = Template(obj.content).render(new_ctx)
             new_ctx.update({'obj': obj})
             tpl = template.loader.get_template(real_tpl)
-            return tpl.render({k: v for k, v in new_ctx.items()})
+            return tpl.render({k: v for k, v in new_ctx})
         elif hasattr(obj, 'image'):
             return obj.image.url
         elif hasattr(obj, 'content'):
