@@ -113,12 +113,13 @@ class ChunkNode(template.Node):
         # Eventually we want to pass the whole context to the template so that
         # users have the maximum of flexibility of what to do in there.
         if self.with_template:
-            new_ctx = template.Context(context)
+            # new_ctx = template.Context(context)
+            new_ctx = context
             if hasattr(obj, 'content'):
                 obj.content = Template(obj.content).render(new_ctx)
             new_ctx.update({'obj': obj})
             tpl = template.loader.get_template(real_tpl)
-            return tpl.render(new_ctx.flatten())
+            return tpl.render(new_ctx)
         elif hasattr(obj, 'image'):
             return obj.image.url
         elif hasattr(obj, 'content'):
