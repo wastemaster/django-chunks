@@ -119,7 +119,7 @@ class ChunkNode(template.Node):
             new_ctx.update({'obj': obj})
             tpl = template.loader.get_template(real_tpl)
             res = {}
-            for item in new_ctx:
+            for item in new_ctx.dicts:
                 res.update(item)
             return tpl.render(res)
         elif hasattr(obj, 'image'):
